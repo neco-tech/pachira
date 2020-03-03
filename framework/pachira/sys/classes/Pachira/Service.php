@@ -45,20 +45,19 @@ class Service {
     };
   }
 
-  public function redirect($path){
-    $this->after_function = function()use($path){
-      redirect($path);
-      exit;
-    };
-  }
-
   public function json($data){
     $this->after_function = function()use($data){
       exit;
     };
   }
 
+  public function redirect($path){
+    redirect($path);
+    exit;
+  }
+
   public function error($errors, $view="error"){
-    $this->view($view, ["errors" => $errors]);
+    view($view, ["errors" => $errors]);
+    exit;
   }
 }
